@@ -15,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
+
+// soy unb comentario
 public class Categoria {
 	@Id
 	@Column(name = "id_cat")
