@@ -16,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 public class Categoria {
+
+	// hola
 	@Id
 	@Column(name = "id_cat")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
