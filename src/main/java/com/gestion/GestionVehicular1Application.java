@@ -11,5 +11,4 @@ public class GestionVehicular1Application {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionVehicular1Application.class, args);
 	}
-//PRUEBA GIT DL
 }

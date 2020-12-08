@@ -1,15 +1,32 @@
 package com.gestion.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente {
+
+
 	
+	
+	public Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String direccion,
+			String email) {
+		super();
+		this.rut = rut;
+		this.nombre = nombre;
+		this.apellidoPaterno = apellidoPaterno;
+		this.apellidoMaterno = apellidoMaterno;
+		this.direccion = direccion;
+		this.email = email;
+	}
+
+	public Cliente() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Id
 	private String rut;
 	
@@ -27,9 +44,6 @@ public class Cliente {
 	
 	@Column(name = "email", length = 50)
 	private String email;
-	
-	@OneToMany(mappedBy = "cliente")
-	private List<ListaDeDeseo> listasDeDeseo;
 
 	public String getRut() {
 		return rut;
