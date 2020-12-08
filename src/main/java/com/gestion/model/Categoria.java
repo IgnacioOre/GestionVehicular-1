@@ -2,7 +2,6 @@ package com.gestion.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonSetter;
-
 @Entity
-
-
 public class Categoria {
 	@Id
 	@Column(name = "id_cat")
@@ -33,8 +26,11 @@ public class Categoria {
 		this.id = id;
 	}
 	
-	public Categoria() {
-		
+	public Categoria() {}
+	
+	public Categoria(int id, String nombreCat) {
+		this.id = id;
+		this.nombre_cat = nombreCat;
 	}
 	
 	public Integer getId() {
