@@ -3,7 +3,6 @@ package com.gestion.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -14,11 +13,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.dao.DataRetrievalFailureException;
 
+import com.gestion.exceptions.GestionVehicularException;
 import com.gestion.model.Categoria;
 import com.gestion.repository.CategoriaRepositoryImpl;
-
 
 @ExtendWith(MockitoExtension.class)
 class CategoriaServiceTest {
@@ -27,10 +25,10 @@ class CategoriaServiceTest {
 	private CategoriaRepositoryImpl categoriaRepo;
 	
 	@InjectMocks
-	private CategoriaServiceImpl categoriaServiceImpl;	
+	private CategoriaServiceImpl categoriaServiceImpl;
 
 	//@Test
-	void siSeInvocaGetAllCategoriasYExistenCategoriasDebeRetornarUnaLista() {
+	void siSeInvocaGetAllCategoriasYExistenCategoriasDebeRetornarListaDeProducto() {
 		
 		// Arrange			
 		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
@@ -65,13 +63,14 @@ class CategoriaServiceTest {
 	}
 	
 	@Test
-	void siSeInvocaSaveConUnaCategoriaValidaYNoSePuedeGrabarLanzaException(){
-		// Arrange	
-		Categoria categoria = new Categoria(3, "parabrisas");
-		doThrow(DataRetrievalFailureException.class).when(categoriaRepo).save(categoria);
-		
-		// Act + Assert
-		assertThrows(Exception.class,()->categoriaServiceImpl.save(categoria));
+	void siSeInvocaSaveYExisteLaCategoriaDebeRetornarUnaException() throws GestionVehicularException{
+		// Arrange
+		//Categoria categoria = new Categoria();
+		//when(categoriaService.save(categoria)).thenReturn(categoria);
 			
+		// Act
+					
+		// Assert	
+			assertThrows(GestionVehicularException.class, ()-> categoriaServiceImpl.save(null));
 	}
 }

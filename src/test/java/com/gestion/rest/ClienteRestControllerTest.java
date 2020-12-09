@@ -130,17 +130,15 @@ class ClienteRestControllerTest {
 	
 		
 		given(clienteService.getClientePorRut("22222222-2")).willReturn(cliente);
-
-		given(clienteService.merge(clienteNuevo));
-
 		given(clienteService.merge(Mockito.any(Cliente.class))).willReturn(clienteNuevo);
-
-
+		System.out.println(clienteNuevo.toString());
+		
 		//When
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/clientes/22222222-2")
 				.accept(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(clienteNuevo))
 				.contentType(MediaType.APPLICATION_JSON);
+		System.out.println(objectMapper.writeValueAsString(clienteNuevo));
 		
 		MvcResult resultado = mockMvc.perform(requestBuilder).andReturn();
 		
