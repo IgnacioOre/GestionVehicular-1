@@ -134,12 +134,8 @@ class ClienteRestControllerTest {
 		given(clienteService.merge(clienteNuevo));
 
 		given(clienteService.merge(Mockito.any(Cliente.class))).willReturn(clienteNuevo);
-<<<<<<< Updated upstream
-		System.out.println(clienteNuevo.toString());
 
-=======
->>>>>>> Stashed changes
-		
+
 		//When
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/clientes/22222222-2")
 				.accept(MediaType.APPLICATION_JSON)
