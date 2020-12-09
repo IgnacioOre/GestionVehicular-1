@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.model.Categoria;
-import com.gestion.model.Producto;
 import com.gestion.service.CategoriaServiceImpl;
 
 @RestController

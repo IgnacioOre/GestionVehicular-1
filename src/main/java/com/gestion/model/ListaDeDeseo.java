@@ -30,7 +30,14 @@ public class ListaDeDeseo {
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "listaDeseo")
-	private List<LineaListaDeDeseos> lineaLista;
+	private List<LineaListaDeDeseos> lineaLista;	
+
+	public ListaDeDeseo(int id, String name, Cliente cliente) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cliente = cliente;
+	}
 
 	public int getId() {
 		return id;
