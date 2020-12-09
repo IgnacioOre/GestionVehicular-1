@@ -1,6 +1,7 @@
 package com.gestion.service;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataRetrievalFailureException;
 
 import com.gestion.model.Cliente;
 import com.gestion.model.ListaDeDeseo;
@@ -54,14 +56,30 @@ class ListaDeDeseoServiceTest {
 		assertEquals(cliente1.getNombre(), resultado.get(0).getCliente().getNombre());
 	}
 	
-	//@Test
+	@Test
 	void siSeInvocaGetAllListYNoExistenListaDeDeseoDevuelveUnaListaVacia() {
-		fail("Not yet implemented");
+		// Arrange
+		when(listaServiceImpl.getAllList()).thenReturn(new ArrayList<ListaDeDeseo>());
+		List<ListaDeDeseo> resultado;
+		
+		// Act
+		resultado = listaServiceImpl.getAllList();		
+		
+		// Assert
+		assertNotNull(resultado);
+		assertEquals(0, resultado.size());
 	}
 	
-	//@Test
-	void siSeInvocaSaveConUnaListaValidaYNoSeAlmacenaLanzaException() {
-		fail("Not yet implemented");
+	@Test
+	void siSeInvocaSaveConUnaListaValidaYNoSeAlmacenaLanzaException() throws Exception {
+		// Arrange
+		Cliente pedro = new Cliente();
+		ListaDeDeseo lista = new ListaDeDeseo(4, "Cosas de interes", pedro);
+		
+		doThrow(DataRetrievalFailureException.class).when(listaRepo).save(lista);		
+		
+		// Act + Assert
+		assertThrows(Exception.class, ()->listaServiceImpl.save(lista));
 	}
 
 }
