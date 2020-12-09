@@ -47,7 +47,12 @@ public class ListaDeDeseo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}	
 }
