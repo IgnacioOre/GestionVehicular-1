@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gestion.exceptions.GestionVehicularException;
 import com.gestion.model.Cliente;
 import com.gestion.repository.ClienteRepository;
 
@@ -36,6 +37,25 @@ public class ClienteServiceImpl implements ClienteService {
 			e.printStackTrace();
 			throw new Exception();
 		}		
+		
+	}
+
+	public Cliente getClientePorRut(String rut) {
+		return repo.findByRut(rut);
+	}
+
+	@Transactional
+	public Cliente merge(Cliente cliente) {
+		return repo.merge(cliente);
+	}
+	
+	@Transactional
+	public void delete(Cliente cliente) throws GestionVehicularException {
+		try {
+			repo.delete(cliente);
+		} catch (DataAccessException e) {
+			throw new GestionVehicularException();
+		}
 		
 	}
 

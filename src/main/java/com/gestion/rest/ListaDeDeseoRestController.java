@@ -8,18 +8,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.model.ListaDeDeseo;
 import com.gestion.service.ListaDeDeseoServiceImpl;
 
 @RestController
+@RequestMapping("lista_de_deseos")
 public class ListaDeDeseoRestController {
 
 	@Autowired
 	private ListaDeDeseoServiceImpl listaDeseoService;
 	
-	@PostMapping(value = "/lista_de_deseos/agregar", produces ="application/json")
+	@PostMapping(value = "/agregar", produces ="application/json")
 	public ResponseEntity<ListaDeDeseo> addNewList(@RequestBody ListaDeDeseo ldd){
 		try {
 			listaDeseoService.save(ldd);
@@ -30,7 +32,7 @@ public class ListaDeDeseoRestController {
 		}
 	}
 	
-	@GetMapping (value = "/lista_de_deseos", produces = "application/json")
+	@GetMapping (value = "", produces = "application/json")
 	public ResponseEntity<List<ListaDeDeseo>> getAllProductos(){
 		
 		List <ListaDeDeseo> ldd = listaDeseoService.getAllList();

@@ -135,8 +135,8 @@ public class ClienteRepositorylmpl implements ClienteRepository{
 
 	@Override
 	public void delete(Cliente entity) {
-		// TODO Auto-generated method stub
-		
+		Cliente borrado = em.find(Cliente.class, entity.getRut());
+		this.em.remove(borrado);
 	}
 
 	@Override
@@ -174,6 +174,20 @@ public class ClienteRepositorylmpl implements ClienteRepository{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Cliente findByRut(String rut) throws DataAccessException {
+		Query query = this.em.createQuery("SELECT DISTINCT cliente FROM Cliente cliente WHERE cliente.rut = :rut");
+		query.setParameter("rut", rut);
+		return (Cliente) query.getResultList().get(0);
+	}
+
+	@Override
+	public Cliente merge(Cliente cliente) {
+		return em.merge(cliente);
+	}
+
 
 
 }

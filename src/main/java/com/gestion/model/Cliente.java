@@ -1,15 +1,15 @@
 package com.gestion.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente {
-
-
-	
-	
 	public Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String direccion,
 			String email) {
 		super();
@@ -44,6 +44,9 @@ public class Cliente {
 	
 	@Column(name = "email", length = 50)
 	private String email;
+	
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<ListaDeDeseo> listasDeDeseo;
 
 	public String getRut() {
 		return rut;

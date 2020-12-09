@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,12 +19,13 @@ import com.gestion.service.ProductoServiceImpl;
 
 
 @RestController
+@RequestMapping("productos")
 public class ProductoRestController {
 	
 	@Autowired
 	private ProductoServiceImpl productoService;
 	
-	@PostMapping(value = "/productos/agregar", produces = "application/json")
+	@PostMapping(value = "/agregar", produces = "application/json")
 	public ResponseEntity<Producto> addProducto(@RequestBody Producto producto) {
 		try {
 			productoService.save(producto);
@@ -34,7 +36,7 @@ public class ProductoRestController {
 		}
 	}
 	
-	@DeleteMapping(value = "/productos/eliminar")
+	@DeleteMapping(value = "/eliminar")
 	public ResponseEntity<Producto> deleteProducto (@RequestParam int id) {	
 		Producto productos = productoService.findByInt(id);	
 		try {
@@ -48,7 +50,7 @@ public class ProductoRestController {
 
 	}
 	
-	@GetMapping(value= "/productos/buscar", produces = "application/json")
+	@GetMapping(value= "/buscar", produces = "application/json")
 	public ResponseEntity<List<Producto>> findProductoByName(@RequestParam String nombre) {
 		List<Producto> productos = productoService.findByNombre(nombre);
 		if (!productos.isEmpty()) {
@@ -57,7 +59,7 @@ public class ProductoRestController {
 		return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping(value= "/productos", produces = "application/json")
+	@GetMapping(value= "", produces = "application/json")
 	public ResponseEntity<List<Producto>> getAllProductos() {
 		List<Producto> productos = productoService.getAllProductos();
 		if (!productos.isEmpty()) {

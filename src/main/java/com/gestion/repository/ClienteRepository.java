@@ -10,5 +10,10 @@ import com.gestion.model.Producto;
 public interface ClienteRepository extends JpaRepository <Cliente, Integer> {
 
 	List<Cliente> findByNombre(String nombre) throws DataAccessException;
+
+	Cliente findByRut(String rut) throws DataAccessException;
+
+	Cliente merge(Cliente cliente);
+
 }
 
