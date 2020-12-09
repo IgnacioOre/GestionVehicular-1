@@ -46,6 +46,16 @@ public class Tienda {
 		return id;
 	}
 
+	
+	public Tienda(int id, String nombre, String ciudad, List<Producto> productos_por_tienda) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.ciudad = ciudad;
+		this.productos_por_tienda = productos_por_tienda;
+	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
