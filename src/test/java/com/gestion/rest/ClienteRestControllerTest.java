@@ -150,12 +150,11 @@ class ClienteRestControllerTest {
 	@Test
 	void siSeInvocaUpdateClienteYElClienteNoEsValidoLanzaUnaExceptionYBadRequest() throws Exception {
 		//given
-		//doThrow(Exception.class).when(clienteService).getClientePorRut("22222222-2");
 		Cliente cliente= new Cliente("22222222-2","Jose","Aedo","Cea","Maipu345","jose@gmail.com");	
 		Cliente clienteNuevo= new Cliente("22222222-1","Jose","Aedo","Ortiz","Maipu345","jose@gmail.com");	
 		
 		given(clienteService.getClientePorRut("22222222-2")).willReturn(cliente);
-		doThrow(Exception.class).when(clienteService).merge(cliente);
+		doThrow(Exception.class).when(clienteService).merge(clienteNuevo);
 		
 		//given(clienteService.merge(Mockito.any(Cliente.class))).willReturn(clienteNuevo);
 		
