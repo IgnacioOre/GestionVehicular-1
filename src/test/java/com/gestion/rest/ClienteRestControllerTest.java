@@ -61,27 +61,6 @@ class ClienteRestControllerTest {
 		
 	}
 	
-	/*@Test
-	void siSeInvocaAddClienteYSeAgregaClienteExitosamenteDebeRetornarClienteYCreated() {
-		//given
-		 Cliente cliente=new Cliente("11111111-1","Danidec","Cea","Gajardo","Roble123","Danidec@gmail.com");
-		
-		given(clienteService.save(cliente)).;
-		
-
-	    //When
-	    MockHttpServletResponse response = mockMvc.perform(get("/clientes/agregar")
-	            .accept(MediaType.APPLICATION_JSON))
-	            .andReturn()
-	            .getResponse();        
-
-	    //Then
-	    assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
-	    assertThat(response.getContentAsString()).isEqualTo(
-	            jsonCliente.write(cliente).getJson()
-	    ); 
-	}*/
-	
 	@Test
 	void SiSeInvocaGetAllClientesYExistenClientesRetornaUnaListaDeClientesYOk() throws Exception{
 		//given
@@ -170,6 +149,26 @@ class ClienteRestControllerTest {
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());	
 	}
 	
+	
+	/*@Test
+	void siSeInvocaAddClienteYSeAgregaClienteExitosamenteDebeRetornarClienteYCreated() {
+		//given
+		 Cliente cliente=new Cliente("11111111-1","Danidec","Cea","Gajardo","Roble123","Danidec@gmail.com");
+		
+		given(clienteService.save(cliente)).;
+		
 
+	    //When
+	    MockHttpServletResponse response = mockMvc.perform(get("/clientes/agregar")
+	            .accept(MediaType.APPLICATION_JSON))
+	            .andReturn()
+	            .getResponse();        
+
+	    //Then
+	    assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
+	    assertThat(response.getContentAsString()).isEqualTo(
+	            jsonCliente.write(cliente).getJson()
+	    ); 
+	}*/
 
 }
