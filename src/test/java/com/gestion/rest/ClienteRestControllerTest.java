@@ -145,9 +145,7 @@ class ClienteRestControllerTest {
 		MockHttpServletResponse response = resultado.getResponse();
 	    //Then
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-	    //assertThat(response.getContentAsString()).isEqualTo(
-	      //      jsonCliente.write(cliente).getJson()
-	    //);	
+	    assertThat(response.getContentAsString()).isEqualTo(jsonCliente.write(clienteNuevo).getJson());	
 		
 	}
 	
