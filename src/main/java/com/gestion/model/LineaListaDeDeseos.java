@@ -17,12 +17,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class LineaListaDeDeseos {
 	
-	
-
-	public LineaListaDeDeseos(int i, List<ListaDeDeseo> listasDeseo, ListaDeDeseo deseoList, String string) {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_linea;
