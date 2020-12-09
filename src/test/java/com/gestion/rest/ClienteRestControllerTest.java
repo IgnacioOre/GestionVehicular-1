@@ -121,7 +121,7 @@ class ClienteRestControllerTest {
 	    //Then
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());	
 	}*/
-	
+	/*
 	@Test
 	void siSeInvocaUpdateClienteYElClienteEsValidoRetornaElClienteYOk() throws Exception {
 		//given
@@ -131,14 +131,12 @@ class ClienteRestControllerTest {
 		
 		given(clienteService.getClientePorRut("22222222-2")).willReturn(cliente);
 		given(clienteService.merge(Mockito.any(Cliente.class))).willReturn(clienteNuevo);
-		System.out.println(clienteNuevo.toString());
 		
 		//When
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/clientes/22222222-2")
 				.accept(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(clienteNuevo))
 				.contentType(MediaType.APPLICATION_JSON);
-		System.out.println(objectMapper.writeValueAsString(clienteNuevo));
 		
 		MvcResult resultado = mockMvc.perform(requestBuilder).andReturn();
 		
@@ -147,23 +145,33 @@ class ClienteRestControllerTest {
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
 	    assertThat(response.getContentAsString()).isEqualTo(jsonCliente.write(clienteNuevo).getJson());	
 		
-	}
+	}*/
 	
-	/*@Test
+	@Test
 	void siSeInvocaUpdateClienteYElClienteNoEsValidoLanzaUnaExceptionYBadRequest() throws Exception {
 		//given
-		doThrow(Exception.class).when(clienteService).getClientePorRut("22222222-2");
-
+		//doThrow(Exception.class).when(clienteService).getClientePorRut("22222222-2");
+		Cliente cliente= new Cliente("22222222-2","Jose","Aedo","Cea","Maipu345","jose@gmail.com");	
+		Cliente clienteNuevo= new Cliente("22222222-1","Jose","Aedo","Ortiz","Maipu345","jose@gmail.com");	
+		
+		given(clienteService.getClientePorRut("22222222-2")).willReturn(cliente);
+		doThrow(Exception.class).when(clienteService).merge(cliente);
+		
+		//given(clienteService.merge(Mockito.any(Cliente.class))).willReturn(clienteNuevo);
 		
 		//When
-		MockHttpServletResponse response = mockMvc.perform(get("/clientes/22222222-2")
-	            .accept(MediaType.APPLICATION_JSON))
-	            .andReturn()
-	            .getResponse();        
+				RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/clientes/22222222-2")
+						.accept(MediaType.APPLICATION_JSON)
+						.content(objectMapper.writeValueAsString(cliente))
+						.contentType(MediaType.APPLICATION_JSON);
+				
+				MvcResult resultado = mockMvc.perform(requestBuilder).andReturn();
+				
+				MockHttpServletResponse response = resultado.getResponse();      
 
 	    //Then
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());	
-	}*/
+	}
 	/*
 	@Test
 	void siSeInvocaUpdateClienteYElClienteEsNullRetornaNotFound() throws Exception {
