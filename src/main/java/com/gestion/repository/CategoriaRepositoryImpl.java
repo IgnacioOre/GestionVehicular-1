@@ -13,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.gestion.model.Categoria;
-import com.gestion.model.Producto;
 
 @Repository
 public class CategoriaRepositoryImpl implements CategoriaRepository {
@@ -162,7 +161,5 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 	public <S extends Categoria> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	
+	}	
 }
