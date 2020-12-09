@@ -17,11 +17,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,10 +49,15 @@ class ClienteRestControllerTest {
 	
 	private JacksonTester<List<Cliente>> jsonListCliente;
 	
+	@Autowired
+	ObjectMapper objectMapper;
+	
 	@BeforeEach
 	void setup() {
 		JacksonTester.initFields(this, new ObjectMapper());
 		mockMvc = MockMvcBuilders.standaloneSetup(clienteRestController).build();
+		objectMapper = new ObjectMapper();
+		
 	}
 	/*@Test
 	void siSeInvocaAddClienteYSeAgregaClienteExitosamenteDebeRetornarClienteYCreated() {
@@ -117,16 +127,22 @@ class ClienteRestControllerTest {
 		//given
 		Cliente cliente= new Cliente("22222222-2","Jose","Aedo","Cea","Maipu345","jose@gmail.com");	
 		Cliente clienteNuevo= new Cliente("22222222-2","Jose","Aedo","Ortiz","Maipu345","jose@gmail.com");	
+	
 		
 		given(clienteService.getClientePorRut("22222222-2")).willReturn(cliente);
-		given(clienteService.merge(cliente)).willReturn(clienteNuevo);
+		given(clienteService.merge(Mockito.any(Cliente.class))).willReturn(clienteNuevo);
+		System.out.println(clienteNuevo.toString());
 		
 		//When
-		MockHttpServletResponse response = mockMvc.perform(put("/clientes/22222222-2")
-	            .accept(MediaType.APPLICATION_JSON))
-	            .andReturn()
-	            .getResponse();        
-
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/clientes/22222222-2")
+				.accept(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(clienteNuevo))
+				.contentType(MediaType.APPLICATION_JSON);
+		System.out.println(objectMapper.writeValueAsString(clienteNuevo));
+		
+		MvcResult resultado = mockMvc.perform(requestBuilder).andReturn();
+		
+		MockHttpServletResponse response = resultado.getResponse();
 	    //Then
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
 	    //assertThat(response.getContentAsString()).isEqualTo(
