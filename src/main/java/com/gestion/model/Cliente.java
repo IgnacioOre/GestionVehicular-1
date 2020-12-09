@@ -6,10 +6,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Cliente {
-
-
-	
-	
 	public Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String direccion,
 			String email) {
 		super();

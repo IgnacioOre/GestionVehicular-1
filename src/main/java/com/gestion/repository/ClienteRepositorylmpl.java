@@ -175,5 +175,19 @@ public class ClienteRepositorylmpl implements ClienteRepository{
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Cliente findByRut(String rut) throws DataAccessException {
+		Query query = this.em.createQuery("SELECT DISTINCT cliente FROM Cliente cliente WHERE cliente.rut = :rut");
+		query.setParameter("rut", rut);
+		return (Cliente) query.getResultList().get(0);
+	}
+
+	@Override
+	public Cliente merge(Cliente cliente) {
+		return em.merge(cliente);
+	}
+
+
 
 }
