@@ -31,6 +31,15 @@ public class ListaDeDeseo {
 	
 	@OneToMany(mappedBy = "listaDeseo")
 	private List<LineaListaDeDeseos> lineaLista;
+	
+	// Constructor para pruebas unitarias
+	public ListaDeDeseo() {}
+	
+	public ListaDeDeseo(int id, String nombre, Cliente cliente) {
+		this.id = id;
+		this.name = nombre;
+		this.cliente = cliente;
+	}	
 
 	
 	public ListaDeDeseo(int id, String name, Cliente cliente, List<LineaListaDeDeseos> lineaLista) {
@@ -64,7 +73,13 @@ public class ListaDeDeseo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+
+	// getter y setter para prueba unitaria
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}		
 }
