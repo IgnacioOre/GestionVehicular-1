@@ -119,7 +119,8 @@ class ClienteRestControllerTest {
 		Cliente clienteNuevo= new Cliente("22222222-2","Jose","Aedo","Ortiz","Maipu345","jose@gmail.com");	
 		
 		given(clienteService.getClientePorRut("22222222-2")).willReturn(cliente);
-		given(clienteService.merge(cliente)).willReturn(clienteNuevo);
+
+		given(clienteService.merge(clienteNuevo));
 		
 		//When
 		MockHttpServletResponse response = mockMvc.perform(put("/clientes/22222222-2")
