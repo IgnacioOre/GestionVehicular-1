@@ -30,6 +30,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gestion.exceptions.GestionVehicularException;
 import com.gestion.model.Cliente;
 import com.gestion.model.Producto;
 import com.gestion.service.ClienteServiceImpl;
@@ -155,11 +156,12 @@ class ClienteRestControllerTest {
 		
 		given(clienteService.getClientePorRut("22222222-2")).willReturn(cliente);
 		doThrow(Exception.class).when(clienteService).merge(clienteNuevo);
+		doThrow(GestionVehicularException.class).when(clienteService).getClientePorRut("11222333-1");
 		
 		//given(clienteService.merge(Mockito.any(Cliente.class))).willReturn(clienteNuevo);
 		
 		//When
-				RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/clientes/22222222-2")
+				RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/clientes/11222333-1")
 						.accept(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(cliente))
 						.contentType(MediaType.APPLICATION_JSON);
@@ -169,7 +171,7 @@ class ClienteRestControllerTest {
 				MockHttpServletResponse response = resultado.getResponse();      
 
 	    //Then
-	    assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());	
+	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());	
 	}
 	/*
 	@Test
