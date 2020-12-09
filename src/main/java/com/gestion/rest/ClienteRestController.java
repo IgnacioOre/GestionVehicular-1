@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gestion.exceptions.GestionVehicularException;
 import com.gestion.model.Cliente;
 import com.gestion.model.Producto;
 import com.gestion.service.ClienteServiceImpl;
@@ -44,19 +45,21 @@ public class ClienteRestController {
 	
 	@PutMapping("/{rut}")
 	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente, @PathVariable String rut) {
-		Cliente clienteAux = clienteService.getClientePorRut(rut);
-		
-		if (clienteAux != null) {
-			try {
-				clienteService.merge(cliente);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return new ResponseEntity<Cliente>(HttpStatus.BAD_REQUEST);
-			}
-			return new ResponseEntity<Cliente> (cliente, HttpStatus.OK);
+		Cliente clienteAux;
+		try {
+			clienteAux = clienteService.getClientePorRut(rut);
+		} catch (GestionVehicularException e) {
+			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+		try {
+			clienteService.merge(cliente);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Cliente>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Cliente> (cliente, HttpStatus.OK);
+
 	}
 	
 	@GetMapping (value= "", produces = "application/json")
@@ -73,8 +76,8 @@ public class ClienteRestController {
 	
 	@DeleteMapping(value = "/eliminar")
 	public ResponseEntity<Cliente> deleteCliente (@RequestParam String rut) {	
-		Cliente cliente = clienteService.getClientePorRut(rut);	
 		try {
+			Cliente cliente = clienteService.getClientePorRut(rut);	
 			clienteService.delete(cliente);
 			return new ResponseEntity<Cliente>(cliente,HttpStatus.OK);
 		} catch (Exception e) {

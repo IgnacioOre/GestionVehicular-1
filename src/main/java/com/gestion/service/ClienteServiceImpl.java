@@ -40,8 +40,13 @@ public class ClienteServiceImpl implements ClienteService {
 		
 	}
 
-	public Cliente getClientePorRut(String rut) {
-		return repo.findByRut(rut);
+	public Cliente getClientePorRut(String rut) throws GestionVehicularException{
+		Cliente cliente = repo.findByRut(rut);
+		if (cliente == null) {
+			throw new GestionVehicularException();
+		} else {
+			return cliente;
+		}
 	}
 
 	@Transactional
