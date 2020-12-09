@@ -32,10 +32,10 @@ public class ProductoRepositoryImpl implements ProductoRepository{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Producto> findByNombre(String nombre) throws DataAccessException {
+	public Producto findByNombre(String nombre) throws DataAccessException {
 		Query query = this.em.createQuery("SELECT DISTINCT producto FROM Producto producto WHERE producto.nombre LIKE :nombre");
-        query.setParameter("nombre", "%" + nombre + "%");
-        return query.getResultList();
+		query.setParameter("nombre", "%" + nombre + "%");
+		return (Producto) query.getResultList().get(0);
 	}
 	
 	@SuppressWarnings("unchecked")

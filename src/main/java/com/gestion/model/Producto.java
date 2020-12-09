@@ -42,6 +42,17 @@ public class Producto {
 	
 	@ManyToMany(mappedBy = "productos_por_tienda")
 	private List<Tienda> tiendas;
+	
+
+	public Producto(int id, String nombre, String marca, String modelo, int precio, int stock) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.marca = marca;
+		this.modelo = modelo;
+		this.precio = precio;
+		this.stock = stock;
+	}
 
 	public int getId() {
 		return id;

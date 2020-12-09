@@ -21,7 +21,7 @@ public class ProductoServiceImpl implements ProductoService {
 		return repo.findAll();
 	}
 	
-	public List<Producto> findByNombre(String nombre) {
+	public Producto findByNombre(String nombre) {
 		return repo.findByNombre(nombre);
 	}
 	

@@ -51,12 +51,12 @@ public class ProductoRestController {
 	}
 	
 	@GetMapping(value= "/buscar", produces = "application/json")
-	public ResponseEntity<List<Producto>> findProductoByName(@RequestParam String nombre) {
-		List<Producto> productos = productoService.findByNombre(nombre);
-		if (!productos.isEmpty()) {
-			return new ResponseEntity<List<Producto>>(productos, HttpStatus.OK);
+	public ResponseEntity<Producto> findProductoByName(@RequestParam String nombre) {
+		Producto productos = productoService.findByNombre(nombre);
+		if (productos!= null) {
+			return new ResponseEntity<Producto>(productos, HttpStatus.OK);
 		}
-		return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping(value= "", produces = "application/json")
