@@ -2,6 +2,7 @@ package com.gestion.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class Cliente {
 	@Column(name = "email", length = 50)
 	private String email;
 	
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<ListaDeDeseo> listasDeDeseo;
 
 	public String getRut() {

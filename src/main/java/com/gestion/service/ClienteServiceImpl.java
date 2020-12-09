@@ -48,6 +48,16 @@ public class ClienteServiceImpl implements ClienteService {
 	public Cliente merge(Cliente cliente) {
 		return repo.merge(cliente);
 	}
+	
+	@Transactional
+	public void delete(Cliente cliente) throws GestionVehicularException {
+		try {
+			repo.delete(cliente);
+		} catch (DataAccessException e) {
+			throw new GestionVehicularException();
+		}
+		
+	}
 
 
 }

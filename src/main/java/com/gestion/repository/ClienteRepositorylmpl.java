@@ -135,8 +135,8 @@ public class ClienteRepositorylmpl implements ClienteRepository{
 
 	@Override
 	public void delete(Cliente entity) {
-		// TODO Auto-generated method stub
-		
+		Cliente borrado = em.find(Cliente.class, entity.getRut());
+		this.em.remove(borrado);
 	}
 
 	@Override
