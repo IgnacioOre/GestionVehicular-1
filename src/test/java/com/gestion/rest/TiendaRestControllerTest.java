@@ -66,4 +66,59 @@ public class TiendaRestControllerTest {
 	            jsonListTienda.write(tiendas).getJson()
 	    );  
 	}
+	
+	@Test
+	void siSeInvocaGetAllTiendasYNoExistenTiendasDebeRetornarNotFound() throws Exception {
+		// Given
+	    ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
+	    given(tiendaService.getAllTiendas()).willReturn(tiendas);
+	    
+	    // When
+	    MockHttpServletResponse response = mockMvc.perform(get("/tiendas")
+	            .accept(MediaType.APPLICATION_JSON))
+	            .andReturn()
+	            .getResponse();        
+
+	    // Then
+	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
+		
+	}
+	
+	@Test
+	void siSeInvocaFindTiendasByNombreYExistenTiendasConParteDeEseNombreDebeRetornarListaYOk() throws Exception {
+		// Given
+		ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
+		tiendas.add(new Tienda(1, "Repuestos Garcia", "Chillan", null));
+		tiendas.add(new Tienda(2, "TodoRepuesto", "Chillan", null));
+		given(tiendaService.findByNombre("Chi")).willReturn(tiendas);
+		
+		 //When
+	    MockHttpServletResponse response = mockMvc.perform(get("/tiendas/buscar/Chi")
+	            .accept(MediaType.APPLICATION_JSON))
+	            .andReturn()
+	            .getResponse();        
+
+	    //Then
+	    assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+	    assertThat(response.getContentAsString()).isEqualTo(
+	            jsonListTienda.write(tiendas).getJson()
+	    );  
+	}
+	
+	@Test
+	void siSeInvocaFindTiendasByNombreYNoExistenTiendasQueContenganParteDeEseNombreDebeRetornarNotFound() throws Exception {
+		// Given
+		ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
+
+		given(tiendaService.findByNombre("zzz")).willReturn(tiendas);
+		
+		 //When
+	    MockHttpServletResponse response = mockMvc.perform(get("/tiendas/buscar/zzz")
+	            .accept(MediaType.APPLICATION_JSON))
+	            .andReturn()
+	            .getResponse();        
+
+	    // Then
+	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value()); 
+	}
 }

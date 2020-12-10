@@ -45,4 +45,12 @@ public class TiendaServiceImpl implements TiendaService {
 		return repo.findTiendaById(id);
 	}
 
+	public List<Tienda> findByNombre(String nombre) {
+		return repo.findByNombre(nombre);
+	}
+
+	public List<Tienda> findByCiudad(String ciudad) {
+		return repo.findByCiudad(ciudad);
+	}
+
 }
