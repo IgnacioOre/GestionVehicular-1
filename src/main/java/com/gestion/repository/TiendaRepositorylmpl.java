@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -174,6 +175,26 @@ public class TiendaRepositorylmpl implements TiendaRepository {
 		Query query = this.em.createQuery("SELECT DISTINCT tienda FROM Tienda tienda WHERE tienda.id = :id");
         query.setParameter("id", id );
         return (Tienda) query.getResultList().get(0);
+	}
+
+	@Override
+	public List<Tienda> findByNombre(String nombre) throws DataAccessException {
+		Query query = this.em.createQuery("SELECT DISTINCT tienda FROM Tienda tienda WHERE tienda.nombre LIKE :nombre");
+		query.setParameter("nombre", "%" + nombre + "%");
+		List<Tienda> resultList = (List<Tienda>) query.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<Tienda> findByCiudad(String ciudad) throws DataAccessException {
+		Query query = this.em.createQuery("SELECT DISTINCT tienda FROM Tienda tienda WHERE tienda.ciudad LIKE :ciudad");
+		query.setParameter("ciudad", "%" + ciudad + "%");
+		List<Tienda> resultList = (List<Tienda>) query.getResultList();
+		return resultList;
+	}
+	
+	public void merge(Tienda tienda) {
+		em.merge(tienda);
 	}
 
 }

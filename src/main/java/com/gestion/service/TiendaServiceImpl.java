@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.gestion.model.Producto;
 import com.gestion.model.Tienda;
 import com.gestion.repository.TiendaRepository;
 
@@ -43,6 +44,20 @@ public class TiendaServiceImpl implements TiendaService {
 
 	public Tienda getTiendaPorId(int id) {
 		return repo.findTiendaById(id);
+	}
+
+	public List<Tienda> findByNombre(String nombre) {
+		return repo.findByNombre(nombre);
+	}
+
+	public List<Tienda> findByCiudad(String ciudad) {
+		return repo.findByCiudad(ciudad);
+	}
+	
+	@Transactional
+	public void merge(Tienda tienda) {
+		repo.merge(tienda);
+		
 	}
 
 }
