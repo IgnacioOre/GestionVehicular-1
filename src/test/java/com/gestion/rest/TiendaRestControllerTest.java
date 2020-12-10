@@ -1,5 +1,9 @@
 package com.gestion.rest;
 
+
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -9,6 +13,7 @@ import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,32 +21,47 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.json.JacksonTester;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpServletResponse;
+
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestion.model.Producto;
+
+
 import com.gestion.model.Tienda;
+
 import com.gestion.service.ProductoServiceImpl;
 import com.gestion.service.TiendaServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class TiendaRestControllerTest {
+
 	private MockMvc mockMvc; 
 	
 	@Mock
 	private TiendaServiceImpl tiendaService;
 	
 	@InjectMocks
+	private TiendaRestController productoRestController;
+	
+	private JacksonTester<List<Producto>> jsonListProducto;
+	
+
 	private TiendaRestController tiendaRestController;
 	
 	private JacksonTester<List<Tienda>> jsonListTienda;
+
 	
 	@BeforeEach
 	void setup() {
 		JacksonTester.initFields(this, new ObjectMapper());
+
+		mockMvc = MockMvcBuilders.standaloneSetup(productoRestController).build();
+
 		mockMvc = MockMvcBuilders.standaloneSetup(tiendaRestController).build();
 	}
 	
