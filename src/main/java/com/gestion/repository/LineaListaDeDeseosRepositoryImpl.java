@@ -172,4 +172,10 @@ public class LineaListaDeDeseosRepositoryImpl implements LineaListaDeDeseosRepos
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void merge(LineaListaDeDeseos ldd) {
+		// TODO Auto-generated method stub
+		
+	}
 }
