@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import com.gestion.model.Producto;
 import com.gestion.model.Tienda;
 
 @Repository
@@ -165,6 +167,13 @@ public class TiendaRepositorylmpl implements TiendaRepository {
 	public <S extends Tienda> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Tienda findTiendaById(int id) {
+		Query query = this.em.createQuery("SELECT DISTINCT tienda FROM Tienda tienda WHERE tienda.id = :id");
+        query.setParameter("id", id );
+        return (Tienda) query.getResultList().get(0);
 	}
 
 }

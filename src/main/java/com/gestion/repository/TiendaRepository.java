@@ -7,4 +7,6 @@ import com.gestion.model.Tienda;
 
 public interface TiendaRepository extends JpaRepository<Tienda,Integer> {
 
+	Tienda findTiendaById(int id);
+
 }

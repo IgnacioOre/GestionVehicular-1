@@ -2,9 +2,12 @@ package com.gestion.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -15,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 public class Producto {
 	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "nombre", length = 50)
@@ -32,15 +37,15 @@ public class Producto {
 	@Column(name = "stock")
 	private int stock;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_categoria")
     @JsonBackReference
 	private Categoria cat;
 	
-	@ManyToMany(mappedBy = "productos")
+	@ManyToMany(mappedBy = "productos", cascade = CascadeType.ALL)
 	private List<LineaListaDeDeseos> lineas;
 	
-	@ManyToMany(mappedBy = "productos_por_tienda")
+	@ManyToMany(mappedBy = "productos_por_tienda", cascade = CascadeType.ALL)
 	private List<Tienda> tiendas;
 	
 
@@ -52,6 +57,10 @@ public class Producto {
 		this.modelo = modelo;
 		this.precio = precio;
 		this.stock = stock;
+	}
+	
+	public Producto() {
+		
 	}
 
 	public int getId() {

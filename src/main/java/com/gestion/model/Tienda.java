@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 /*import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -22,6 +24,7 @@ import javax.persistence.ManyToMany;
 public class Tienda {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "nombre", length = 50)
@@ -30,18 +33,14 @@ public class Tienda {
 	@Column (name = "ciudad", length = 50)
 	private String ciudad;
 	
-	/* REVISAR MANY TO MANY A PRODUCTOS
-	 * @ManyToMany
-	@JoinTable (name= "Producto_Tienda", joinColumns = @JoinColumn(name = "idTienda"),
-	inverseJoinColumns = @JoinColumn (name = "idProducto" ))
-	 List<Producto> productos;
-	*/
-	
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable
 	private List<Producto> productos_por_tienda;
 	
-
+	public Tienda() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -75,6 +74,23 @@ public class Tienda {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+
+
+	public List<Producto> getProductos_por_tienda() {
+		return productos_por_tienda;
+	}
+
+
+	public void setProductos_por_tienda(List<Producto> productos_por_tienda) {
+		this.productos_por_tienda = productos_por_tienda;
+	}
+
+
+	public void addProducto(Producto producto) {
+		this.productos_por_tienda.add(producto);
+	}
+	
+	
 
   	
 	

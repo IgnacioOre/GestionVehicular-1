@@ -1,6 +1,7 @@
 package com.gestion.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -38,6 +39,10 @@ public class TiendaServiceImpl implements TiendaService {
 			throw new Exception();
 		}
 
+	}
+
+	public Tienda getTiendaPorId(int id) {
+		return repo.findTiendaById(id);
 	}
 
 }

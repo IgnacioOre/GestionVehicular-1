@@ -2,12 +2,15 @@ package com.gestion.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Categoria {
@@ -19,7 +22,8 @@ public class Categoria {
 	@Column(name = "nombre_cat")
 	private String nombre_cat;
 	
-	@OneToMany(mappedBy = "cat")
+	@OneToMany(mappedBy = "cat", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<Producto> productos;
 	
 	public Categoria(int id) {
