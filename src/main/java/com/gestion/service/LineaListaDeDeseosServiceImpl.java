@@ -40,5 +40,10 @@ public class LineaListaDeDeseosServiceImpl {
 		repo.merge(lineaListaDeDeseos);
 
 	}
+
+
+	public LineaListaDeDeseos findById(int id) {
+		return repo.findPorId(id);
+	}
 }
 

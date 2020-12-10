@@ -13,4 +13,6 @@ public interface LineaListaDeDeseosRepository extends JpaRepository<LineaListaDe
 
 	void merge(LineaListaDeDeseos ldd);
 
+	LineaListaDeDeseos findPorId(int id);
+
 }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import com.gestion.model.Cliente;
 import com.gestion.model.LineaListaDeDeseos;
 
 @Repository
@@ -25,7 +26,7 @@ public class LineaListaDeDeseosRepositoryImpl implements LineaListaDeDeseosRepos
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LineaListaDeDeseos> getAllList() throws DataAccessException {
-		Query query = this.em.createQuery("SELECT LineaLineaListaDeDeseoss FROM LineaListaDeDeseos LineaListaDeDeseos");		
+		Query query = this.em.createQuery("SELECT linea_lista_de_deseos FROM LineaListaDeDeseos linea_lista_de_deseos");		
 		return query.getResultList();		
 	}
 	
@@ -177,4 +178,13 @@ public class LineaListaDeDeseosRepositoryImpl implements LineaListaDeDeseosRepos
 	public void merge(LineaListaDeDeseos lineaListaDeDeseos) {
 		em.merge(lineaListaDeDeseos);
 	}
+
+	@Override
+	public LineaListaDeDeseos findPorId(int id) {
+		Query query = this.em.createQuery("SELECT DISTINCT linea_lista_de_deseos FROM LineaListaDeDeseos linea_lista_de_deseos WHERE linea_lista_de_deseos.id_linea = :id");
+		query.setParameter("id", id);
+		return (LineaListaDeDeseos) query.getResultList().get(0);
+	}
+	
+
 }

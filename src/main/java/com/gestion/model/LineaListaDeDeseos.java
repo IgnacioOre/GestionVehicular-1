@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class LineaListaDeDeseos {
 	
@@ -27,6 +29,7 @@ public class LineaListaDeDeseos {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_lista")
+	@JsonBackReference
 	private ListaDeDeseo listaDeseo;
 	
 	@Column(name = "nombre_subcat")
@@ -73,5 +76,10 @@ public class LineaListaDeDeseos {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public void addProducto(Producto producto) {
+		productos.add(producto);
+		
 	}	
 }
