@@ -1,7 +1,6 @@
 package com.gestion.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -24,7 +23,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestion.model.Producto;
-import com.gestion.service.ProductoService;
 import com.gestion.service.ProductoServiceImpl;
 
 

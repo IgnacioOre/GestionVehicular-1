@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.exceptions.GestionVehicularException;
 import com.gestion.model.Cliente;
-import com.gestion.model.Producto;
 import com.gestion.service.ClienteServiceImpl;
 
 
@@ -45,6 +44,7 @@ public class ClienteRestController {
 	
 	@PutMapping("/{rut}")
 	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente, @PathVariable String rut) {
+		@SuppressWarnings("unused")
 		Cliente clienteAux;
 		try {
 			clienteAux = clienteService.getClientePorRut(rut);

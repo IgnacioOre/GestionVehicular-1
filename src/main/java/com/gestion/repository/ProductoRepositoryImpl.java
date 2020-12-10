@@ -14,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.gestion.model.Categoria;
 import com.gestion.model.Producto;
 
 @Repository
@@ -30,7 +29,6 @@ public class ProductoRepositoryImpl implements ProductoRepository{
 	}
 	
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public Producto findByNombre(String nombre) throws DataAccessException {
 		Query query = this.em.createQuery("SELECT DISTINCT producto FROM Producto producto WHERE producto.nombre LIKE :nombre");
@@ -38,8 +36,7 @@ public class ProductoRepositoryImpl implements ProductoRepository{
 		return (Producto) query.getResultList().get(0);
 	}
 	
-	@SuppressWarnings("unchecked")
-    @Override
+	@Override
     public Producto findById(int id) throws DataAccessException {
         Query query = this.em.createQuery("SELECT DISTINCT producto FROM Producto producto WHERE producto.id = :id");
         query.setParameter("id", id );

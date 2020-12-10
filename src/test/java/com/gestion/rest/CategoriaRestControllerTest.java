@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -43,7 +44,7 @@ class CategoriaRestControllerTest {
 		mockMvc = MockMvcBuilders.standaloneSetup(categoriaRestController).build();
 	}
 
-	// @Test
+	@Test
 	void siSeInvocaGetAllCategoriasYExistenDebeRetornarUnaLIstaYOk() throws Exception {
 		// Given
 		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
@@ -62,7 +63,7 @@ class CategoriaRestControllerTest {
 		assertThat(response.getContentAsString()).isEqualTo(jsonListCategoria.write(categorias).getJson());
 	}
 
-	// @Test
+	@Test
 	void siSeInvocaGetAllCategoriasYNoExistenDebeRetornarNotFound() throws Exception {
 		// Give
 		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
@@ -74,23 +75,5 @@ class CategoriaRestControllerTest {
 
 		// Then
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
-	}
-
-	// @Test
-	void siSeInvocaAddCategoriaConUnaCategoriaValidaDebeAlmacenarlaYRetornarCreated() throws Exception {
-		// Give
-
-		// When
-
-		// Then
-	}
-
-	// @Test
-	void siSeInvocaAddCategoriaConParametroInvalidoDebeRetornarBadRequest() throws Exception {
-		// Give
-
-		// When
-
-		// Then
-	}
+	}	
 }

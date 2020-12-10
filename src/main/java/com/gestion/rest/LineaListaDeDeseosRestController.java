@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.model.LineaListaDeDeseos;
-import com.gestion.model.ListaDeDeseo;
 import com.gestion.service.LineaListaDeDeseosServiceImpl;
-import com.gestion.service.ListaDeDeseoServiceImpl;
 
 @RestController
 @RequestMapping("linea_lista_de_deseos")

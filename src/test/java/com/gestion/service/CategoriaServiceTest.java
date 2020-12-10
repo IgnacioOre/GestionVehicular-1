@@ -2,7 +2,6 @@ package com.gestion.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.gestion.exceptions.GestionVehicularException;
 import com.gestion.model.Categoria;
 import com.gestion.repository.CategoriaRepositoryImpl;
 
@@ -27,7 +25,7 @@ class CategoriaServiceTest {
 	@InjectMocks
 	private CategoriaServiceImpl categoriaServiceImpl;
 
-	//@Test
+	@Test
 	void siSeInvocaGetAllCategoriasYExistenCategoriasDebeRetornarListaDeProducto() {
 		
 		// Arrange			
@@ -47,7 +45,7 @@ class CategoriaServiceTest {
 		assertEquals("Luces", resultado.get(1).getNombre_cat());
 	}
 	
-	//@Test
+	@Test
 	void siSeInvocaGetAllCategoriasYNoExistenCategoriasDevuelveUnaListaVacia() {
 		
 		// Arrange
@@ -60,17 +58,5 @@ class CategoriaServiceTest {
 	
 		// Assert
 			assertEquals(0, resultado.size());
-	}
-	
-	@Test
-	void siSeInvocaSaveYExisteLaCategoriaDebeRetornarUnaException() throws GestionVehicularException{
-		// Arrange
-		//Categoria categoria = new Categoria();
-		//when(categoriaService.save(categoria)).thenReturn(categoria);
-			
-		// Act
-					
-		// Assert	
-			assertThrows(GestionVehicularException.class, ()-> categoriaServiceImpl.save(null));
 	}
 }

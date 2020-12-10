@@ -19,18 +19,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.gestion.model.Cliente;
 import com.gestion.repository.ClienteRepositorylmpl;
 
-
-
 @ExtendWith(MockitoExtension.class)
-
-class ClienteServiceTest {
-	
+class ClienteServiceTest {	
 	
 	@Mock
 	private ClienteRepositorylmpl clienteRepositoryImpl;
 	
-	
-
 	@InjectMocks
 	private ClienteServiceImpl clienteServiceImpl;
 	
@@ -77,7 +71,4 @@ class ClienteServiceTest {
 	 void siSeInvocaSaveYSeLanzaException() throws Exception{
 			assertThrows(Exception.class,()->clienteServiceImpl.save(null));
 	 }
-	
-	
-
 }

@@ -15,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.gestion.model.Cliente;
-import com.gestion.model.Producto;
 
 @Repository
 public class ClienteRepositorylmpl implements ClienteRepository{
@@ -174,8 +173,7 @@ public class ClienteRepositorylmpl implements ClienteRepository{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public Cliente findByRut(String rut) throws DataAccessException {
 		Query query = this.em.createQuery("SELECT DISTINCT cliente FROM Cliente cliente WHERE cliente.rut = :rut");
