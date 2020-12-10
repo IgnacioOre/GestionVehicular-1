@@ -45,7 +45,7 @@ public class Producto {
 	@ManyToMany(mappedBy = "productos", cascade = CascadeType.ALL)
 	private List<LineaListaDeDeseos> lineas;
 	
-	@ManyToMany(mappedBy = "productos_por_tienda", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "productos_por_tienda")
 	private List<Tienda> tiendas;
 	
 

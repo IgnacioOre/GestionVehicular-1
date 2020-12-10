@@ -192,5 +192,9 @@ public class TiendaRepositorylmpl implements TiendaRepository {
 		List<Tienda> resultList = (List<Tienda>) query.getResultList();
 		return resultList;
 	}
+	
+	public void merge(Tienda tienda) {
+		em.merge(tienda);
+	}
 
 }

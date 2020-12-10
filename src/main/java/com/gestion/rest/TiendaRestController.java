@@ -56,8 +56,23 @@ public class TiendaRestController {
 		return new ResponseEntity<Tienda>(HttpStatus.NOT_FOUND);
 	}
 	
-	@PostMapping(value = "/{id}/agregar", produces = "application/json")
-	public ResponseEntity<Tienda> addProducto(@RequestBody Producto producto, @PathVariable int id){
+	@PostMapping(value = "/{id}/agregarExistente", produces = "application/json")
+	public ResponseEntity<Tienda> addProductoExistente(@RequestBody Producto producto, @PathVariable int id){
+		try {
+			Tienda tienda = tiendaService.getTiendaPorId(id);
+			tienda.addProducto(producto);
+			tiendaService.merge(tienda);
+			return new ResponseEntity<Tienda>(tienda,HttpStatus.CREATED);
+		} catch (Exception e) {
+			// TODO: handle exceptio
+			System.out.println(e.getMessage());
+			return new ResponseEntity<Tienda>(HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	
+	@PostMapping(value = "/{id}/agregarNuevo", produces = "application/json")
+	public ResponseEntity<Tienda> addProductoNuevo(@RequestBody Producto producto, @PathVariable int id){
 		try {
 			Tienda tienda = tiendaService.getTiendaPorId(id);
 			tienda.addProducto(producto);
