@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -77,32 +76,21 @@ class CategoriaRestControllerTest {
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
 	}
 
-	@Test
+	// @Test
 	void siSeInvocaAddCategoriaConUnaCategoriaValidaDebeAlmacenarlaYRetornarCreated() throws Exception {
 		// Give
-		//Categoria categoria = new Categoria(2, "cosas pedro");
-
-		//doThrow().when(categoriaServiceImpl.save(categoria)).thenReturn(categoria);
-
 
 		// When
-		MockHttpServletResponse response = mockMvc.perform(get("/categorias/agregar")
-		 .accept(MediaType.APPLICATION_JSON))
-		 .andReturn()
-		 .getResponse();
 
 		// Then
-		 assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
 	}
 
-	//@Test
+	// @Test
 	void siSeInvocaAddCategoriaConParametroInvalidoDebeRetornarBadRequest() throws Exception {
-		// Give			
-		
+		// Give
 
 		// When
-		
 
-		// Then		
+		// Then
 	}
 }

@@ -1,11 +1,9 @@
 package com.gestion.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestion.exceptions.GestionVehicularException;
 import com.gestion.model.Cliente;
-import com.gestion.model.Producto;
 import com.gestion.service.ClienteServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -103,6 +100,7 @@ class ClienteRestControllerTest {
 	    //Then
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());	
 	}
+	
 	@Test
 	void siSeInvocaUpdateClienteYElClienteEsValidoRetornaElClienteYOk() throws Exception {
 		//given
@@ -149,8 +147,8 @@ class ClienteRestControllerTest {
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());	
 	}
 	
-	
-	/*@Test
+	/*
+	@Test
 	void siSeInvocaAddClienteYSeAgregaClienteExitosamenteDebeRetornarClienteYCreated() {
 		//given
 		 Cliente cliente=new Cliente("11111111-1","Danidec","Cea","Gajardo","Roble123","Danidec@gmail.com");
