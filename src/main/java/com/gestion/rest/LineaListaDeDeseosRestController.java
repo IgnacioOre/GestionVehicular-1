@@ -25,7 +25,7 @@ public class LineaListaDeDeseosRestController {
 	public ResponseEntity<LineaListaDeDeseos> addLineaListaDeDeseo(@RequestBody LineaListaDeDeseos lineaListaDeDeseos){
 		
 		try {
-			lineaListaDeseosService.save(lineaListaDeDeseos);
+			lineaListaDeseosService.merge(lineaListaDeDeseos);
 			return new ResponseEntity<LineaListaDeDeseos>(lineaListaDeDeseos, HttpStatus.CREATED);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

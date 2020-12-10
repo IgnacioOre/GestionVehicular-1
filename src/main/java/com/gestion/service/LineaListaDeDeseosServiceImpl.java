@@ -32,4 +32,10 @@ public class LineaListaDeDeseosServiceImpl {
 	public List<LineaListaDeDeseos> getAllList() {
 		return repo.getAllList();
 	}
+	@Transactional
+	public void merge(LineaListaDeDeseos ldd) {
+		repo.merge(ldd);
+		
+	}
 }
+
