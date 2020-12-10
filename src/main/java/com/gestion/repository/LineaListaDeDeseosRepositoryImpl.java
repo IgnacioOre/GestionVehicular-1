@@ -174,8 +174,7 @@ public class LineaListaDeDeseosRepositoryImpl implements LineaListaDeDeseosRepos
 	}
 
 	@Override
-	public void merge(LineaListaDeDeseos ldd) {
-		// TODO Auto-generated method stub
-		
+	public void merge(LineaListaDeDeseos lineaListaDeDeseos) {
+		em.merge(lineaListaDeDeseos);
 	}
 }
