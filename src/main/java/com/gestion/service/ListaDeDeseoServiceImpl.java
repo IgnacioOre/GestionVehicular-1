@@ -34,4 +34,10 @@ public class ListaDeDeseoServiceImpl implements ListaDeDeseoService{
 	public List<ListaDeDeseo> getAllList() {
 		return repo.getAllList();
 	}
+	
+	@Transactional
+	public void merge(ListaDeDeseo ldd) {
+		repo.merge(ldd);
+		
+	}
 }

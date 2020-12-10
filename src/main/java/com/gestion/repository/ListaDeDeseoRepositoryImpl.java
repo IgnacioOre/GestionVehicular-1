@@ -171,5 +171,10 @@ public class ListaDeDeseoRepositoryImpl implements ListaDeDeseoRepository{
 	public <S extends ListaDeDeseo> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void merge(ListaDeDeseo ldd) {
+		em.merge(ldd);
 	}	
 }

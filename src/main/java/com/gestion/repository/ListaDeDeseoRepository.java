@@ -11,4 +11,6 @@ import com.gestion.model.ListaDeDeseo;
 public interface ListaDeDeseoRepository extends JpaRepository<ListaDeDeseo, Integer>{
 
 	List <ListaDeDeseo> getAllList() throws DataAccessException;
+
+	void merge(ListaDeDeseo ldd);
 }

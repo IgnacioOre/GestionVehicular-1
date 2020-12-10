@@ -24,7 +24,7 @@ public class ListaDeDeseoRestController {
 	@PostMapping(value = "/agregar", produces ="application/json")
 	public ResponseEntity<ListaDeDeseo> addNewList(@RequestBody ListaDeDeseo ldd){
 		try {
-			listaDeseoService.save(ldd);
+			listaDeseoService.merge(ldd);
 			return new ResponseEntity<ListaDeDeseo>(ldd, HttpStatus.CREATED);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

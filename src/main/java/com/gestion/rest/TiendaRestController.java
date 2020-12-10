@@ -30,7 +30,6 @@ public class TiendaRestController {
 			tiendaService.save(tienda);
 			return new ResponseEntity<Tienda>(tienda,HttpStatus.CREATED);
 		} catch (Exception e) {
-			// TODO: handle exceptio
 			System.out.println(e.getMessage());
 			return new ResponseEntity<Tienda>(HttpStatus.BAD_REQUEST);
 		}
@@ -79,7 +78,6 @@ public class TiendaRestController {
 			tiendaService.save(tienda);
 			return new ResponseEntity<Tienda>(tienda,HttpStatus.CREATED);
 		} catch (Exception e) {
-			// TODO: handle exceptio
 			System.out.println(e.getMessage());
 			return new ResponseEntity<Tienda>(HttpStatus.BAD_REQUEST);
 		}

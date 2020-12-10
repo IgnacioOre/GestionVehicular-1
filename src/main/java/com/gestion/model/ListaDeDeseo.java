@@ -38,6 +38,10 @@ public class ListaDeDeseo {
 		this.name = name;
 		this.cliente = cliente;
 	}
+	
+	public ListaDeDeseo() {
+		
+	}
 
 	public int getId() {
 		return id;
