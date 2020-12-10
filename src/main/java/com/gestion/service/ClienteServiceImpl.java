@@ -19,7 +19,6 @@ public class ClienteServiceImpl implements ClienteService {
 	
 	@Override
 	public List<Cliente> getAllClientes() {
-		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
 	

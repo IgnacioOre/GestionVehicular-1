@@ -8,12 +8,16 @@ import com.gestion.model.Cliente;
 import com.gestion.model.Producto;
 
 public interface ClienteRepository extends JpaRepository <Cliente, Integer> {
+	
+	public List<Cliente> findAll();
+	
+	public List<Cliente> findByNombre(String nombre) throws DataAccessException;
+	
+	public void delete(Cliente entity);
+	
+	public Cliente findByRut(String rut) throws DataAccessException;
 
-	List<Cliente> findByNombre(String nombre) throws DataAccessException;
-
-	Cliente findByRut(String rut) throws DataAccessException;
-
-	Cliente merge(Cliente cliente);
+	public Cliente merge(Cliente cliente);
 
 }
 

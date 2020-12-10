@@ -63,7 +63,7 @@ public class ClienteRestController {
 	}
 	
 	@GetMapping (value= "", produces = "application/json")
-	public ResponseEntity<List<Cliente>> gettAllClientes(){
+	public ResponseEntity<List<Cliente>> getAllClientes(){
 		
 		List <Cliente> clientes = clienteService.getAllClientes();
 		

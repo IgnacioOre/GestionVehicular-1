@@ -8,11 +8,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.gestion.model.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, Integer>{
+	
+	public List<Producto> findAll();
+	
+	public Producto findByNombre(String nombre) throws DataAccessException;
 
-	Producto findByNombre(String nombre) throws DataAccessException;
-
-	Producto findById(int id) throws DataAccessException;
-
-	void delete(int id);
+	public Producto findById(int id) throws DataAccessException; 
+	
+	public void delete(int id);
 	                   
 }         
