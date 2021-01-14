@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,7 +56,7 @@ public class TiendaRestController {
 		return new ResponseEntity<Tienda>(HttpStatus.NOT_FOUND);
 	}
 	
-	@PostMapping(value = "/{id}/agregarExistente", produces = "application/json")
+	@PutMapping(value = "/{id}/agregarExistente", produces = "application/json")
 	public ResponseEntity<Tienda> addProductoExistente(@RequestBody Producto producto, @PathVariable int id){
 		try {
 			Tienda tienda = tiendaService.getTiendaPorId(id);

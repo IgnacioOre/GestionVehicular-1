@@ -5,8 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Cliente {
@@ -45,9 +49,9 @@ public class Cliente {
 	@Column(name = "email", length = 50)
 	private String email;
 	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<ListaDeDeseo> listasDeDeseo;
-
+	
 	public String getRut() {
 		return rut;
 	}
