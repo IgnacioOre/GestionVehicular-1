@@ -89,6 +89,15 @@ public class Tienda {
 	public void addProducto(Producto producto) {
 		this.productos_por_tienda.add(producto);
 	}
+
+	public void deleteProductoById(int id2) {
+		for (int i=0;i<productos_por_tienda.size();i++) {
+			if (productos_por_tienda.get(i).getId() == id2) {
+				productos_por_tienda.remove(i);
+			}
+		}
+		
+	}
 	
 	
 
