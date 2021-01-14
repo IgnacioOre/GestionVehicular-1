@@ -57,14 +57,13 @@ public class TiendaRestController {
 	}
 	
 	@PutMapping(value = "/{id}/agregarExistente", produces = "application/json")
-	public ResponseEntity<Tienda> addProductoExistente(@RequestBody Producto producto, @PathVariable int id){
+	public ResponseEntity<Tienda> updateProductoExistente(@RequestBody Producto producto, @PathVariable int id){
 		try {
 			Tienda tienda = tiendaService.getTiendaPorId(id);
 			tienda.addProducto(producto);
 			tiendaService.merge(tienda);
 			return new ResponseEntity<Tienda>(tienda,HttpStatus.CREATED);
 		} catch (Exception e) {
-			// TODO: handle exceptio
 			System.out.println(e.getMessage());
 			return new ResponseEntity<Tienda>(HttpStatus.BAD_REQUEST);
 		}
