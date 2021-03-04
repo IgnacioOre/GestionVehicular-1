@@ -60,8 +60,6 @@ public class TiendaRestController {
 	public ResponseEntity<Tienda> updateProductoExistente(@RequestBody Producto producto, @PathVariable int id){
 		try {
 			Tienda tienda = tiendaService.getTiendaPorId(id);
-			tienda.deleteProductoById(producto.getId());
-			System.out.println(producto.getId());
 			tienda.addProducto(producto);
 			tiendaService.merge(tienda);
 			return new ResponseEntity<Tienda>(tienda,HttpStatus.CREATED);
@@ -69,7 +67,6 @@ public class TiendaRestController {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<Tienda>(HttpStatus.BAD_REQUEST);
 		}
-
 		
 	}
 	

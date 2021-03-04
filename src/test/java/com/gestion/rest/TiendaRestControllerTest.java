@@ -141,7 +141,4 @@ public class TiendaRestControllerTest {
 	    // Then
 	    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value()); 
 	}
-	
-	//@Test
-	//void siSeInvocaUpdateProductoExistenteConUnProductoValido
 }
